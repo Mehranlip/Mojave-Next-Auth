@@ -41,4 +41,6 @@ async function connectDb() {
   return cached.conn;
 }
 
+
+
 export default connectDb;
