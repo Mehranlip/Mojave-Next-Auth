@@ -7,8 +7,17 @@ export default function Home() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">welcome</h1>
-      <button onClick={() => signIn()}>Sign in</button>
+      {session?.user?.name}
+      <img
+        src={session?.user?.image!}
+        alt="user imge"
+        className="w-32 h-32 rounded-full"
+      />
+      {session ? (
+        <button onClick={() => signOut()}>sing Out</button>
+      ) : (
+        <button onClick={() => signIn()}>sign In</button>
+      )}
     </>
   );
 }
