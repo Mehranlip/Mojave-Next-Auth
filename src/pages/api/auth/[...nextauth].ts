@@ -48,8 +48,17 @@ export default NextAuth({
       profile?: Profile | undefined;
       isNewUser?: boolean | undefined;
     }) {
-      console.log(account);
+      if (user) {
+        token.provider = account?.provider;
+      }
+
       return token;
+    },
+    async session({ session, token }: { session: any; token: JWT }) {
+      if (session.user) {
+        session.user.provider = token.provider;
+      }
+      return session;
     },
   },
 });
