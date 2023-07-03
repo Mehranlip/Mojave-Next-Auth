@@ -28,4 +28,5 @@ export default NextAuth({
       issuer: process.env.AUTH0_ISSUER as string,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 });
