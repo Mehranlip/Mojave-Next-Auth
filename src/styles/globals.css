@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.home {
+    background-image: url("../../public/home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box-home {
+    border-radius: 40px;
+    background: rgba(196, 196, 196, 0.068);
+    backdrop-filter: blur(12.5px);
+    border: solid 1px rgb(116, 114, 114);
+}
+
+.name-user {
+    color: #FFF;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.email-user {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    line-height: normal;
+}
+
+.signout {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    line-height: normal;
+    margin-top: 10px;
+
+}
