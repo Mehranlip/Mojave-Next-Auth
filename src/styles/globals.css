@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* home page style */
 .home {
     background-image: url("../../public/home.png");
     background-repeat: no-repeat;
@@ -37,4 +39,22 @@
     font-style: normal;
     line-height: normal;
 
+}
+
+/* Auth page style */
+
+.auth {
+    background-image: url("../../public/auth.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.login-text {
+    color: #FFF;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
