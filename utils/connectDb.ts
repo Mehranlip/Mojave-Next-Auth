@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+
+
 if (!process.env.DATABASE_URL) {
   throw new Error("please add the database url in .env file");
 }
