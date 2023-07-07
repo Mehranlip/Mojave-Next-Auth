@@ -58,3 +58,18 @@
     font-weight: 700;
     line-height: normal;
 }
+
+.input-com {
+    border-radius: 10px;
+    border: 1px solid #BCBEC0;
+    background: #FFF;
+}
+
+.input-com::placeholder {
+    color: #BCBEC0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
