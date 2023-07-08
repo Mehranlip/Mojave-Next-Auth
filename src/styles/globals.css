@@ -2,74 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* home page style */
 .home {
-    background-image: url("../../public/home.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("../../public/home.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .box-home {
-    border-radius: 40px;
-    background: rgba(196, 196, 196, 0.068);
-    backdrop-filter: blur(12.5px);
-    border: solid 1px rgb(116, 114, 114);
+  border-radius: 40px;
+  background: rgba(196, 196, 196, 0.068);
+  backdrop-filter: blur(12.5px);
+  border: solid 1px rgb(116, 114, 114);
 }
 
 .name-user {
-    color: #FFF;
-    font-size: 25px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #fff;
+  font-size: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .email-user {
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    line-height: normal;
+  font-size: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  line-height: normal;
 }
 
 .signout {
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    line-height: normal;
-
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  line-height: normal;
 }
 
 /* Auth page style */
 
 .auth {
-    background-image: url("../../public/auth.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("../../public/auth.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-
 .login-text {
-    color: #FFF;
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .input-com {
-    border-radius: 10px;
-    border: 1px solid #BCBEC0;
-    background: #FFF;
+  border-radius: 10px;
+  border: 1px solid #bcbec0;
+  background: #fff;
 }
 
 .input-com::placeholder {
-    color: #BCBEC0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #bcbec0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

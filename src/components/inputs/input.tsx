@@ -17,8 +17,8 @@ const Input: React.FunctionComponent<IInputProps> = (props) => {
   const { name, label, type, icon, placeholder, register, error, disabled } =
     props;
   return (
-    <div className=" w-[100%]">
-      <label htmlFor={name} className="text-white">
+    <div className=" w-[100%] mt-3">
+      <label htmlFor={name} className="text-white ">
         {label}
       </label>
       <div className="relative mt-1 ">
@@ -43,7 +43,7 @@ const Input: React.FunctionComponent<IInputProps> = (props) => {
           </div>
         )}
         {error && (
-          <p className="text-sm text-[#ed4337] mt-1 w-fit rounded-xl px-1">
+          <p className="text-sm text-[#c5c5c5] mt-1 w-fit rounded-xl px-1">
             {error}
           </p>
         )}

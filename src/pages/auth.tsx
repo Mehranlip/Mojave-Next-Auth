@@ -4,7 +4,7 @@ export default function auth() {
   return (
     <div className="auth">
       <div className="h-screen w-screen flex items-center justify-center sm:pt-4 md:pt-0 ">
-        <div className="box-home w-96 p-5 flex">
+        <div className="box-home w-fit p-5 flex">
           <div className="text-login">
             <h5 className="login-text">Sign up</h5>
             <p className="text-white mt-2 space-x-2">
