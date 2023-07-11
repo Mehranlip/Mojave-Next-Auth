@@ -5,9 +5,12 @@ import { FiLock, FiMail } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { BsTelephone } from "react-icons/bs";
 
+import { useState, useEffect } from "react";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validator from "validator";
+import zxcvbn from "zxcvbn";
 
 interface IRegisterFromProps {}
 const FormSchema = z
@@ -31,12 +34,12 @@ const FormSchema = z
       .min(6, "Password must be atleast 6 characters.")
       .max(52, "Password must be less than 52 characters."),
     confirmPassword: z.string(),
-    // accept: z.literal(true, {
-    //   errorMap: () => ({
-    //     message:
-    //       "Please agree to all the terms and conditions before continuing.",
-    //   }),
-    // }),
+    accept: z.literal(true, {
+      errorMap: () => ({
+        message:
+          "Please agree to all the terms and conditions before continuing.",
+      }),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password doesn't match",
@@ -45,6 +48,7 @@ const FormSchema = z
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
+  const [passwordScore, setPasswordScore] = useState(0);
   const {
     register,
     handleSubmit,
@@ -55,6 +59,15 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
   });
 
   const onSubmit = (data: any) => console.log(data);
+
+  const validatePasswordStrength = () => {
+    let password = watch().password;
+    return zxcvbn(password ? password : "").score;
+  };
+
+  useEffect(() => {
+    setPasswordScore(validatePasswordStrength());
+  }, [watch().password]);
 
   return (
     <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
@@ -110,6 +123,23 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
         error={errors?.password?.message}
         disabled={isSubmitting}
       />
+      {watch().password?.length > 0 && (
+        <div className="flex mt-2">
+          {Array.from(Array(5).keys()).map((span, i) => (
+            <span className="w-1/5 px-1" key={i}>
+              <div
+                className={`h-2 rounded-xl b ${
+                  passwordScore <= 2
+                    ? "bg-red-400 opacity-70"
+                    : passwordScore < 4
+                    ? "bg-yellow-400 opacity-70"
+                    : "bg-green-500 opacity-70"
+                }`}
+              ></div>
+            </span>
+          ))}
+        </div>
+      )}
       <Input
         name="confirmPassword"
         label="Confirm password"
@@ -120,6 +150,39 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
         error={errors?.confirmPassword?.message}
         disabled={isSubmitting}
       />
+      <div className="flex items-center mt-3">
+        <input
+          type="checkbox"
+          id="accept"
+          className="mr-2 focus:ring-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600"
+          {...register("accept")}
+        />
+        <label htmlFor="accept" className="text-white">
+          I accept the&nbsp;{" "}
+          <a
+            href=""
+            className="text-blue-200 hover:text-blue-700 hover:underline"
+            target="_blank"
+          >
+            terms
+          </a>
+          &nbsp;and&nbsp;
+          <a
+            href=""
+            className="text-blue-200 hover:text-blue-700 hover:underline"
+            target="_blank"
+          >
+            privacy policy
+          </a>
+        </label>
+      </div>
+      <div>
+        {errors.accept && (
+          <p className="text-sm text-[#f53737] mt-1">
+            {errors?.accept?.message}
+          </p>
+        )}
+      </div>
       <button
         className="signout w-full mt-4  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
         type="submit"
