@@ -1,7 +1,7 @@
 import * as React from "react";
 import Input from "../inputs/input";
 import { CiUser } from "react-icons/ci";
-import { FiMail } from "react-icons/fi";
+import { FiLock, FiMail } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { BsTelephone } from "react-icons/bs";
 
@@ -10,33 +10,38 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import validator from "validator";
 
 interface IRegisterFromProps {}
-const FormSchema = z.object({
-  first_name: z
-    .string()
-    .min(2, "First name atleast 2 characters")
-    .max(32, "First name less than 32 characters")
-    .regex(new RegExp("^[a-zA-z]+$"), "No special characters allowed."),
-  last_name: z
-    .string()
-    .min(2, "Last name atleast 2 characters")
-    .max(32, "Last name less than 32 characters")
-    .regex(new RegExp("^[a-zA-z]+$"), "No special characters allowed."),
-  email: z.string().email("Please enter a valid email adress."),
-  phone: z.string().refine(validator.isMobilePhone, {
-    message: "Please enter a valid phone number",
-  }),
-  password: z
-    .string()
-    .min(6, "Password must be atleast 6 characters.")
-    .max(52, "Password must be less than 52 characters."),
-  confirmPassword: z.string(),
-  accept: z.literal(true, {
-    errorMap: () => ({
-      message:
-        "Please agree to all the terms and conditions before continuing.",
+const FormSchema = z
+  .object({
+    first_name: z
+      .string()
+      .min(2, "First name atleast 2 characters")
+      .max(32, "First name less than 32 characters")
+      .regex(new RegExp("^[a-zA-z]+$"), "No special characters allowed."),
+    last_name: z
+      .string()
+      .min(2, "Last name atleast 2 characters")
+      .max(32, "Last name less than 32 characters")
+      .regex(new RegExp("^[a-zA-z]+$"), "No special characters allowed."),
+    email: z.string().email("Please enter a valid email adress."),
+    phone: z.string().refine(validator.isMobilePhone, {
+      message: "Please enter a valid phone number",
     }),
-  }),
-});
+    password: z
+      .string()
+      .min(6, "Password must be atleast 6 characters.")
+      .max(52, "Password must be less than 52 characters."),
+    confirmPassword: z.string(),
+    // accept: z.literal(true, {
+    //   errorMap: () => ({
+    //     message:
+    //       "Please agree to all the terms and conditions before continuing.",
+    //   }),
+    // }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password doesn't match",
+    path: ["confirmPassword"],
+  });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
@@ -93,6 +98,26 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
         placeholder="+(xxx) xxx-xx-xx"
         register={register}
         error={errors?.phone?.message}
+        disabled={isSubmitting}
+      />
+      <Input
+        name="password"
+        label="Password"
+        type="password"
+        icon={<FiLock />}
+        placeholder="***********"
+        register={register}
+        error={errors?.password?.message}
+        disabled={isSubmitting}
+      />
+      <Input
+        name="confirmPassword"
+        label="Confirm password"
+        type="password"
+        icon={<FiLock />}
+        placeholder="***********"
+        register={register}
+        error={errors?.confirmPassword?.message}
         disabled={isSubmitting}
       />
       <button
