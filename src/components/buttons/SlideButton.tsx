@@ -1,3 +1,5 @@
+import { BeatLoader } from "react-spinners";
+
 interface ISlideButtonProps {
   type?: "submit" | "reset" | "button";
   text: string;

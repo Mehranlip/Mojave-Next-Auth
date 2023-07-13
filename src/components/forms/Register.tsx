@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import validator from "validator";
 import zxcvbn from "zxcvbn";
 import SlideButton from "../buttons/SlideButton";
+import { toast } from "react-toastify";
 
 interface IRegisterFromProps {}
 const FormSchema = z
