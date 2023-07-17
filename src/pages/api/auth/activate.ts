@@ -13,11 +13,17 @@ export default async function handler(
   try {
     await connectDb();
     const { token } = req.body;
-    const userToken = jwt.verify(token, ACTIVATION_TOKEN_SECRET!);
-    console.log(userToken.id);
+    const userToken = jwt.verify(token, ACTIVATION_TOKEN_SECRET!) as UserToken;
+    const userDb = await User.findById(userToken.id);
+    if (userDb.emailVerified == true) {
+      return res
+        .status(400)
+        .json({ message: "Email address alredy verified." });
+    }
+    await User.findByIdAndUpdate(userDb.id, { emailVerified: true });
 
     res.json({
-      message: "Register succes ! Please activate Your account to start.",
+      message: "Your account has been successfully verified.",
     });
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });
