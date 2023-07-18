@@ -84,127 +84,139 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
   }, [watch().password]);
 
   return (
-    <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
-      <div className="gap-2 md:flex">
-        <Input
-          name="first_name"
-          label="First name"
-          type="text"
-          icon={<CiUser />}
-          placeholder="Mehran"
-          register={register}
-          error={errors?.first_name?.message}
-          disabled={isSubmitting}
-        />
-        <Input
-          name="last_name"
-          label="Last name"
-          type="text"
-          icon={<CiUser />}
-          placeholder="Asadi"
-          register={register}
-          error={errors?.last_name?.message}
-          disabled={isSubmitting}
-        />
-      </div>
-      <Input
-        name="email"
-        label="Email"
-        type="text"
-        icon={<FiMail />}
-        placeholder="contact@email.ir"
-        register={register}
-        error={errors?.email?.message}
-        disabled={isSubmitting}
-      />
-      <Input
-        name="phone"
-        label="Phone number"
-        type="text"
-        icon={<BsTelephone />}
-        placeholder="+(xxx) xxx-xx-xx"
-        register={register}
-        error={errors?.phone?.message}
-        disabled={isSubmitting}
-      />
-      <Input
-        name="password"
-        label="Password"
-        type="password"
-        icon={<FiLock />}
-        placeholder="***********"
-        register={register}
-        error={errors?.password?.message}
-        disabled={isSubmitting}
-      />
-      {watch().password?.length > 0 && (
-        <div className="flex mt-2">
-          {Array.from(Array(5).keys()).map((span, i) => (
-            <span className="w-1/5 px-1" key={i}>
-              <div
-                className={`h-2 rounded-xl b ${
-                  passwordScore <= 2
-                    ? "bg-red-400 opacity-70"
-                    : passwordScore < 4
-                    ? "bg-yellow-400 opacity-70"
-                    : "bg-green-500 opacity-70"
-                }`}
-              ></div>
-            </span>
-          ))}
+    <div>
+      <h5 className="login-text">Sign up</h5>
+      <p className="text-white mt-2 space-x-2">
+        You already have an account ? &nbsp;
+        <a
+          className="text-blue-300 hover:text-blue-700 hover:opacity-90 cursor-pointer"
+          href=""
+        >
+          Sing in
+        </a>
+      </p>
+      <form className="my-8 text-sm w-96" onSubmit={handleSubmit(onSubmit)}>
+        <div className="gap-2 md:flex">
+          <Input
+            name="first_name"
+            label="First name"
+            type="text"
+            icon={<CiUser />}
+            placeholder="Mehran"
+            register={register}
+            error={errors?.first_name?.message}
+            disabled={isSubmitting}
+          />
+          <Input
+            name="last_name"
+            label="Last name"
+            type="text"
+            icon={<CiUser />}
+            placeholder="Asadi"
+            register={register}
+            error={errors?.last_name?.message}
+            disabled={isSubmitting}
+          />
         </div>
-      )}
-      <Input
-        name="confirmPassword"
-        label="Confirm password"
-        type="password"
-        icon={<FiLock />}
-        placeholder="***********"
-        register={register}
-        error={errors?.confirmPassword?.message}
-        disabled={isSubmitting}
-      />
-      <div className="flex items-center mt-3">
-        <input
-          type="checkbox"
-          id="accept"
-          className="mr-2 focus:ring-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600"
-          {...register("accept")}
+        <Input
+          name="email"
+          label="Email"
+          type="text"
+          icon={<FiMail />}
+          placeholder="contact@email.ir"
+          register={register}
+          error={errors?.email?.message}
+          disabled={isSubmitting}
         />
-        <label htmlFor="accept" className="text-white">
-          I accept the&nbsp;{" "}
-          <a
-            href=""
-            className="text-blue-200 hover:text-blue-700 hover:underline"
-            target="_blank"
-          >
-            terms
-          </a>
-          &nbsp;and&nbsp;
-          <a
-            href=""
-            className="text-blue-200 hover:text-blue-700 hover:underline"
-            target="_blank"
-          >
-            privacy policy
-          </a>
-        </label>
-      </div>
-      <div>
-        {errors.accept && (
-          <p className="text-sm text-[#f53737] mt-1">
-            {errors?.accept?.message}
-          </p>
+        <Input
+          name="phone"
+          label="Phone number"
+          type="text"
+          icon={<BsTelephone />}
+          placeholder="+(xxx) xxx-xx-xx"
+          register={register}
+          error={errors?.phone?.message}
+          disabled={isSubmitting}
+        />
+        <Input
+          name="password"
+          label="Password"
+          type="password"
+          icon={<FiLock />}
+          placeholder="***********"
+          register={register}
+          error={errors?.password?.message}
+          disabled={isSubmitting}
+        />
+        {watch().password?.length > 0 && (
+          <div className="flex mt-2">
+            {Array.from(Array(5).keys()).map((span, i) => (
+              <span className="w-1/5 px-1" key={i}>
+                <div
+                  className={`h-2 rounded-xl b ${
+                    passwordScore <= 2
+                      ? "bg-red-400 opacity-70"
+                      : passwordScore < 4
+                      ? "bg-yellow-400 opacity-70"
+                      : "bg-green-500 opacity-70"
+                  }`}
+                ></div>
+              </span>
+            ))}
+          </div>
         )}
-      </div>
-      <SlideButton
-        type="submit"
-        text="Sign up"
-        slide_text="Secure sign up"
-        icon={<FiLock />}
-        disabled={isSubmitting}
-      />
-    </form>
+        <Input
+          name="confirmPassword"
+          label="Confirm password"
+          type="password"
+          icon={<FiLock />}
+          placeholder="***********"
+          register={register}
+          error={errors?.confirmPassword?.message}
+          disabled={isSubmitting}
+        />
+        <div className="flex items-center mt-3">
+          <input
+            type="checkbox"
+            id="accept"
+            className="mr-2 focus:ring-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600"
+            {...register("accept")}
+          />
+          <label htmlFor="accept" className="text-white">
+            I accept the&nbsp;{" "}
+            <a
+              href=""
+              className="text-blue-200 hover:text-blue-700 hover:underline"
+              target="_blank"
+            >
+              terms
+            </a>
+            &nbsp;and&nbsp;
+            <a
+              href=""
+              className="text-blue-200 hover:text-blue-700 hover:underline"
+              target="_blank"
+            >
+              privacy policy
+            </a>
+          </label>
+        </div>
+        <div>
+          {errors.accept && (
+            <p className="text-sm text-[#f53737] mt-1">
+              {errors?.accept?.message}
+            </p>
+          )}
+        </div>
+        <SlideButton
+          type="submit"
+          text="Sign up"
+          slide_text="Secure sign up"
+          icon={<FiLock />}
+          disabled={isSubmitting}
+        />
+      </form>
+    </div>
   );
 };
 
