@@ -14,6 +14,7 @@ import zxcvbn from "zxcvbn";
 import SlideButton from "../buttons/SlideButton";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Link from "next/link";
 
 interface IRegisterFromProps {}
 const FormSchema = z
@@ -88,12 +89,12 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
       <h5 className="login-text">Sign up</h5>
       <p className="text-white mt-2 space-x-2">
         You already have an account ? &nbsp;
-        <a
+        <Link
           className="text-blue-300 hover:text-blue-700 hover:opacity-90 cursor-pointer"
-          href=""
+          href="/auth"
         >
           Sing in
-        </a>
+        </Link>
       </p>
       <form className="my-8 text-sm w-96" onSubmit={handleSubmit(onSubmit)}>
         <div className="gap-2 md:flex">

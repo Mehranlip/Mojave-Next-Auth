@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SlideButton from "../buttons/SlideButton";
+import { useRouter } from "next/router";
 
 interface ILoginformProps {}
 const FormSchema = z.object({
@@ -18,6 +19,8 @@ const FormSchema = z.object({
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
+  const router = useRouter();
+  const path = router.pathname;
   const {
     register,
     handleSubmit,
@@ -33,7 +36,17 @@ const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
       <h5 className="login-text">Sign in</h5>
       <p className="text-white mt-2 space-x-2">
         You do not have an account ? &nbsp;
-        <a className="text-blue-300 hover:text-blue-700 hover:opacity-90 cursor-pointer">
+        <a
+          className="text-blue-300 hover:text-blue-700 hover:opacity-90 cursor-pointer"
+          onClick={() => {
+            router.push({
+              pathname: path,
+              query: {
+                tab: "signup",
+              },
+            });
+          }}
+        >
           Sing up
         </a>
       </p>
