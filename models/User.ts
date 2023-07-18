@@ -35,6 +35,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const UserModal =
-  mongoose.models.User || mongoose.model("UserModal", userSchema);
+  mongoose.models.UserModal || mongoose.model("UserModal", userSchema);
 
 export default UserModal;

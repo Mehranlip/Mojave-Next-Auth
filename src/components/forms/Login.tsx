@@ -7,8 +7,14 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SlideButton from "../buttons/SlideButton";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
+import { error } from "console";
 
-interface ILoginformProps {}
+interface ILoginformProps {
+  callbackUrl: string;
+  csrfToken: string;
+}
 const FormSchema = z.object({
   email: z.string().email("Please enter a valid email adress."),
   password: z
@@ -18,7 +24,9 @@ const FormSchema = z.object({
 });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
+
 const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
+  const { callbackUrl, csrfToken } = props;
   const router = useRouter();
   const path = router.pathname;
   const {
@@ -29,7 +37,19 @@ const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {};
+  const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {
+    const res: any = await signIn("credentials", {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+      callbackUrl,
+    });
+    if (res.error) {
+      return toast.error(res.error);
+    } else {
+      return router.push("/");
+    }
+  };
 
   return (
     <div>
@@ -50,7 +70,13 @@ const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
           Sing up
         </a>
       </p>
-      <form className="my-8 text-sm w-96" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        method="post"
+        action="/api/auth/signin/email"
+        className="my-8 text-sm w-96"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <input type="hidden" name="csrfToken" defaultValue={csrfToken} />
         <Input
           name="email"
           label="Email"
