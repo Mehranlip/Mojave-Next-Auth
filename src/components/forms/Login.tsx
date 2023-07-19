@@ -9,7 +9,7 @@ import SlideButton from "../buttons/SlideButton";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
-import { error } from "console";
+import Link from "next/link";
 
 interface ILoginformProps {
   callbackUrl: string;
@@ -98,6 +98,11 @@ const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
           error={errors?.password?.message}
           disabled={isSubmitting}
         />
+        <div className="mt-2 ">
+          <Link className="text-white " href="/forgot">
+            Forgot password ?
+          </Link>
+        </div>
 
         <SlideButton
           type="submit"

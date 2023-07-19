@@ -1,10 +1,6 @@
 import NextAuth, { Account, Profile, User } from "next-auth";
-import FacebookProvider from "next-auth/providers/facebook";
-import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
-import TwitterProvider from "next-auth/providers/twitter";
-import Auth0Provider from "next-auth/providers/auth0";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
@@ -53,11 +49,6 @@ export default NextAuth({
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
     }),
-    // Auth0Provider({
-    //   clientId: process.env.AUTH0_CLIENT_ID as string,
-    //   clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
-    //   issuer: process.env.AUTH0_ISSUER as string,
-    // }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
