@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import axios from "axios";
 
 interface IForgotFormProps {}
 const FormSchema = z.object({
@@ -27,7 +28,16 @@ const ForgotForm: React.FunctionComponent<IForgotFormProps> = (props) => {
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {};
+  const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {
+    try {
+      const { data } = await axios.post("/api/auth/forgot", {
+        email: values.email,
+      });
+      toast.success(data.message);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   return (
     <div>
