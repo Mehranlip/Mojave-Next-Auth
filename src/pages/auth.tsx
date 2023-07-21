@@ -40,9 +40,7 @@ export default function auth({
                     key={provider.id}
                     id={provider.id}
                     text={
-                      tab == "signup"
-                        ? `Sign up with ${provider.name}`
-                        : `Sign in with ${provider.name}`
+                      tab == "signup" ? `${provider.name}` : `${provider.name}`
                     }
                     csrfToken={csrfToken}
                   />
