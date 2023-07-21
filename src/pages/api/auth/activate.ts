@@ -15,6 +15,11 @@ export default async function handler(
     const { token } = req.body;
     const userToken = jwt.verify(token, ACTIVATION_TOKEN_SECRET!) as UserToken;
     const userDb = await User.findById(userToken.id);
+    if (userDb) {
+      return res
+        .status(400)
+        .json({ message: "This account no longer exists." });
+    }
     if (userDb.emailVerified == true) {
       return res
         .status(400)
