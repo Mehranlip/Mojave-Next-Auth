@@ -2,7 +2,7 @@ import ForgotForm from "@/components/forms/Forgot";
 import ResetForm from "@/components/forms/Reset";
 import { NextPageContext } from "next";
 
-export default function auth({ token }: { token: string }) {
+export default function Reset({ token }: { token: string }) {
   return (
     <div className="auth ">
       <div className="h-screen w-screen flex items-center justify-center sm:pt-4 md:pt-0 ">
