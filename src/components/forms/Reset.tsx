@@ -78,7 +78,10 @@ const ResetForm: React.FunctionComponent<IResetFormProps> = (props) => {
           Sing in
         </Link>
       </p>
-      <form className="my-8 text-sm w-96" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="my-8 text-sm md:w-96 sm:w-full"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Input
           name="password"
           label="Password"

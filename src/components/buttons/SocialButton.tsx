@@ -33,7 +33,7 @@ const SocialButton: React.FunctionComponent<ISocialButtonProps> = (props) => {
     <form method="post" action={`/api/auth/signin/${id}`}>
       <input type="hidden" name="csrfToken" defaultValue={csrfToken} />
       <button
-        className="mb-2 py-2 px-1 flex justify-center items-center gap-2 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
+        className=" mb-2 py-2 px-1 flex  justify-center items-center gap-2 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-fit transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
         type="button"
         onClick={() => signIn(id)}
         style={{ background: `${colors[id]}` }}

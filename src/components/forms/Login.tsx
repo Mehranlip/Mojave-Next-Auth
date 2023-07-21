@@ -73,7 +73,7 @@ const Loginform: React.FunctionComponent<ILoginformProps> = (props) => {
       <form
         method="post"
         action="/api/auth/signin/email"
-        className="my-8 text-sm w-96"
+        className="my-8 text-sm md:w-96 sm:w-64"
         onSubmit={handleSubmit(onSubmit)}
       >
         <input type="hidden" name="csrfToken" defaultValue={csrfToken} />

@@ -16,7 +16,7 @@ export default function auth({
   providers: any;
 }) {
   return (
-    <div className="auth ">
+    <div className="auth  ">
       <div className="h-screen w-screen flex items-center justify-center sm:pt-4 md:pt-0 ">
         <div className="box-home p-5 flex">
           <div className="text-login">

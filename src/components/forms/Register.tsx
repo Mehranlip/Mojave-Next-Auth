@@ -96,7 +96,10 @@ const RegisterForm: React.FunctionComponent<IRegisterFromProps> = (props) => {
           Sing in
         </Link>
       </p>
-      <form className="my-8 text-sm w-96" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="my-8 text-sm md:w-96 sm:w-64"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="gap-2 md:flex">
           <Input
             name="first_name"
