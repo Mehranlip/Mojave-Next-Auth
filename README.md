@@ -1,6 +1,5 @@
 <img src="https://github.com/Mehranlip/Mojave-Next-Auth/assets/60979458/a6c7349e-6571-4e67-9c08-931901b1cdbf" />
 <br/>
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
